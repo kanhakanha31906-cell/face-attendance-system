@@ -2,7 +2,10 @@ import streamlit as st
 import requests
 import pandas as pd
 
-API_URL = st.secrets.get("API_URL", os.getenv("API_URL", "http://127.0.0.1:8000"))
+if "API_URL" in st.secrets:
+    API_URL = st.secrets["API_URL"]
+else:
+    API_URL = os.getenv("API_URL", "http://127.0.0.1:8000")
 
 st.set_page_config(page_title="Face Attendance System", layout="wide")
 st.title("Smart Face Recognition Attendance System")
