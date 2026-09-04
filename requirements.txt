@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+insightface
+onnxruntime
+opencv-python-headless
+streamlit
+requests
+pandas
+python-multipart
