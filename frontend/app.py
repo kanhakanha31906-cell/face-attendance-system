@@ -1,11 +1,20 @@
 import streamlit as st
 import requests
 import pandas as pd
+import os
 
-if "API_URL" in st.secrets:
-    API_URL = st.secrets["API_URL"]
-else:
-    API_URL = os.getenv("API_URL", "http://127.0.0.1:8000")
+# Default fallback for local testing
+API_URL = "http://127.0.0.1:8000"
+
+# Safely check secrets without crashing when run locally
+try:
+    if "API_URL" in st.secrets:
+        API_URL = st.secrets["API_URL"]
+except Exception:
+    pass
+
+# Fallback to system environment variable if present
+API_URL = os.getenv("API_URL", API_URL)
 
 st.set_page_config(page_title="Face Attendance System", layout="wide")
 st.title("Smart Face Recognition Attendance System")
